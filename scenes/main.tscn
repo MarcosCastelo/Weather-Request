@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://bg.jpg" type="Texture" id=2]
+[ext_resource path="res://font20.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://font45.tres" type="DynamicFont" id=5]
+
+[node name="GameNode" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 642.16, 367.119 )
+scale = Vector2( 4.37224, 4.45936 )
+texture = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 872.24
+margin_top = 70.0834
+margin_right = 1146.24
+margin_bottom = 138.083
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "REQUEST"
+
+[node name="Tempo" type="Label" parent="CanvasLayer"]
+margin_left = 181.412
+margin_top = 283.973
+margin_right = 730.412
+margin_bottom = 480.973
+custom_fonts/font = ExtResource( 4 )
+text = "
+"
+align = 1
+
+[node name="Cidade" type="LineEdit" parent="CanvasLayer"]
+margin_left = 286.999
+margin_top = 59.7914
+margin_right = 840.999
+margin_bottom = 140.791
+custom_fonts/font = ExtResource( 5 )
+text = "Teresina"
+align = 1
+
+[node name="Temperatura" type="Label" parent="CanvasLayer"]
+margin_left = 749.757
+margin_top = 291.526
+margin_right = 1095.76
+margin_bottom = 408.526
+custom_fonts/font = ExtResource( 4 )
+align = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+[connection signal="text_changed" from="CanvasLayer/Cidade" to="." method="_on_Cidade_text_changed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
